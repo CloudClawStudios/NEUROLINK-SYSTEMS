@@ -204,5 +204,47 @@
     © 2032 SYNEX Corp. | This is a fictional website created for a game. SYNEX is not real.
   </div>
 
+  <script>
+  let queueNumber = Math.floor(Math.random() * (1873 - 358 + 1)) + 358;
+  let queueInterval;
+  let countdownStarted = false;
+
+  document.querySelector(".button").addEventListener("click", () => {
+    if (countdownStarted) return;
+    countdownStarted = true;
+
+    const contactSection = document.getElementById("contact");
+    const queueBox = document.createElement("div");
+    queueBox.style.background = "#15171c";
+    queueBox.style.padding = "2em";
+    queueBox.style.marginTop = "2em";
+    queueBox.style.border = "2px solid #00f6ff";
+    queueBox.style.textAlign = "center";
+    queueBox.style.color = "#00f6ff";
+    queueBox.style.fontSize = "1.2em";
+    queueBox.id = "queueBox";
+    queueBox.innerHTML = `You’ve been added to the SYNEX waitlist.<br><br><strong>Current Position in Queue:</strong><br><span id="queueNumber">${queueNumber}</span>`;
+    contactSection.appendChild(queueBox);
+
+    queueInterval = setInterval(() => {
+      const decrement = Math.floor(Math.random() * 3) + 1;
+      queueNumber -= decrement;
+      if (queueNumber <= 0) {
+        clearInterval(queueInterval);
+        queueBox.innerHTML = `
+          <div style="padding: 2em; border: 2px dashed #00f6ff;">
+            <h3 class="glow">WIRED MINDS: Releasing 2026–2027</h3>
+            <p>Your upgrade awaits. Stay tuned for full integration.</p>
+            <p>Welcome to the new era of mind-machine synergy.</p>
+          </div>
+        `;
+      } else {
+        document.getElementById("queueNumber").innerText = queueNumber;
+      }
+    }, Math.random() * (90000 - 30000) + 30000); // 30–90 seconds
+  });
+</script>
+
+
 </body>
 </html>
