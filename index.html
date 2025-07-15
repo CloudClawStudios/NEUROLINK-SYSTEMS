@@ -1,250 +1,272 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SYNEX Neural Chip</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0b0c10;
-      color: #ffffff;
-      scroll-behavior: smooth;
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>SYNEX Neural Chip</title>  
+  <style>  
+    body {  
+      margin: 0;  
+      font-family: 'Segoe UI', sans-serif;  
+      background-color: #0b0c10;  
+      color: #ffffff;  
+      scroll-behavior: smooth;  
+    }  
+
+    header {  
+      background-color: #111;  
+      position: sticky;  
+      top: 0;  
+      z-index: 1000;  
+      display: flex;  
+      justify-content: space-between;  
+      align-items: center;  
+      padding: 1em 2em;  
+      border-bottom: 1px solid #222;  
+    }  
+
+    header h1 {  
+      color: #00f6ff;  
+      font-size: 1.5em;  
+      letter-spacing: 1px;  
+    }  
+
+    nav a {  
+      color: #ccc;  
+      text-decoration: none;  
+      margin-left: 1.5em;  
+      transition: color 0.3s;  
+    }  
+
+    nav a:hover {  
+      color: #00f6ff;  
+    }  
+
+    .hero {  
+      text-align: center;  
+      padding: 8em 2em;  
+      background: radial-gradient(ellipse at center, #1a1c20, #0b0c10);  
+    }  
+
+    .hero h2 {  
+      font-size: 3em;  
+      color: #ffffff;  
+    }  
+
+    .hero p {  
+      color: #aaa;  
+      font-size: 1.2em;  
+      margin-top: 0.5em;  
+      max-width: 600px;  
+      margin-left: auto;  
+      margin-right: auto;  
+    }  
+
+    section {  
+      padding: 4em 2em;  
+      max-width: 1000px;  
+      margin: auto;  
+    }  
+
+    section h3 {  
+      font-size: 2em;  
+      color: #00f6ff;  
+      margin-bottom: 0.5em;  
+    }  
+
+    section p {  
+      font-size: 1.1em;  
+      color: #ccc;  
+      line-height: 1.6;  
+    }  
+
+    .features {  
+      display: flex;  
+      flex-wrap: wrap;  
+      gap: 2em;  
+      margin-top: 2em;  
+    }  
+
+    .feature {  
+      background-color: #15171c;  
+      padding: 1.5em;  
+      border-left: 4px solid #00f6ff;  
+      flex: 1 1 300px;  
+    }  
+
+    .footer {  
+      text-align: center;  
+      font-size: 0.8em;  
+      padding: 2em;  
+      background: #111;  
+      color: #666;  
+    }  
+
+    .glow {  
+      text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff;  
+    }  
+
+    .button {  
+      background: #00f6ff;  
+      color: #0b0c10;  
+      padding: 0.6em 1.2em;  
+      border: none;  
+      border-radius: 4px;  
+      font-weight: bold;  
+      cursor: pointer;  
+      transition: background 0.3s;  
+      margin-top: 1em;  
+    }  
+
+    .button:hover {  
+      background: #00b4cc;  
     }
 
-    header {
-      background-color: #111;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1em 2em;
-      border-bottom: 1px solid #222;
-    }
-
-    header h1 {
-      color: #00f6ff;
-      font-size: 1.5em;
-      letter-spacing: 1px;
-    }
-
-    nav a {
-      color: #ccc;
-      text-decoration: none;
-      margin-left: 1.5em;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #00f6ff;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 8em 2em;
-      background: radial-gradient(ellipse at center, #1a1c20, #0b0c10);
-    }
-
-    .hero h2 {
-      font-size: 3em;
-      color: #ffffff;
-    }
-
-    .hero p {
-      color: #aaa;
-      font-size: 1.2em;
-      margin-top: 0.5em;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    section {
-      padding: 4em 2em;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    section h3 {
-      font-size: 2em;
-      color: #00f6ff;
-      margin-bottom: 0.5em;
-    }
-
-    section p {
-      font-size: 1.1em;
-      color: #ccc;
-      line-height: 1.6;
-    }
-
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2em;
-      margin-top: 2em;
-    }
-
-    .feature {
-      background-color: #15171c;
-      padding: 1.5em;
-      border-left: 4px solid #00f6ff;
-      flex: 1 1 300px;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 0.8em;
+    .queue-box {
+      background: #15171c;
       padding: 2em;
-      background: #111;
-      color: #666;
+      margin-top: 2em;
+      border: 2px solid #00f6ff;
+      text-align: center;
+      color: #00f6ff;
+      font-size: 1.2em;
     }
 
-    /* Optional: glowing line effect */
-    .glow {
-      text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff;
+    .postcard {
+      margin-top: 2em;
+      padding: 3em;
+      border: 3px dashed #00f6ff;
+      background: #0f1014;
+      color: #00f6ff;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
     }
 
-    .button {
-      background: #00f6ff;
-      color: #0b0c10;
-      padding: 0.6em 1.2em;
-      border: none;
-      border-radius: 4px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-      margin-top: 1em;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
+  </style>  
+</head>  
+<body>  
 
-    .button:hover {
-      background: #00b4cc;
-    }
-  </style>
-</head>
-<body>
+  <header>  
+    <h1 class="glow">SYNEX</h1>  
+    <nav>  
+      <a href="#about">About</a>  
+      <a href="#features">Features</a>  
+      <a href="#tech">Technology</a>  
+      <a href="#testimonials">Voices</a>  
+      <a href="#contact">Contact</a>  
+    </nav>  
+  </header>  
 
-  <header>
-    <h1 class="glow">SYNEX</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#features">Features</a>
-      <a href="#tech">Technology</a>
-      <a href="#testimonials">Voices</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <div class="hero">  
+    <h2 class="glow">Enhance Your Mind, Empower Your Life</h2>  
+    <p>Introducing the SYNEX Neural Chip – THE future of human connection and productivity.</p>  
+    <button class="button" onclick="window.location.href='#features'">Explore Features</button>  
+  </div>  
 
-  <div class="hero">
-    <h2 class="glow">Enhance Your Mind, Empower Your Life</h2>
-    <p>Introducing the SYNEX Neural Chip – THE future of human connection and productivity.</p>
-    <button class="button" onclick="window.location.href='#features'">Explore Features</button>
-  </div>
+  <section id="about">  
+    <h3>What is SYNEX?</h3>  
+    <p>  
+      The SYNEX Neural Chip is a revolutionary leap forward in neural-interface technology.  
+      Designed to enhance memory, focus, emotional regulation, and productivity, SYNEX  
+      seamlessly connects your brain to the modern world.  
+    </p>  
+  </section>  
 
-  <section id="about">
-    <h3>What is SYNEX?</h3>
-    <p>
-      The SYNEX Neural Chip is a revolutionary leap forward in neural-interface technology.
-      Designed to enhance memory, focus, emotional regulation, and productivity, SYNEX
-      seamlessly connects your brain to the modern world.
-    </p>
-  </section>
+  <section id="features">  
+    <h3>Key Features</h3>  
+    <div class="features">  
+      <div class="feature">  
+        <h4>⚡ Instant Recall</h4>  
+        <p>Store and retrieve memories with perfect clarity and speed.</p>  
+      </div>  
+      <div class="feature">  
+        <h4>📶 Mental Connectivity</h4>  
+        <p>Stay in sync with your digital life — without lifting a finger.</p>  
+      </div>  
+      <div class="feature">  
+        <h4>🧠 Focus Amplification</h4>  
+        <p>Maximize attention and minimize distractions, even in stressful environments.</p>  
+      </div>  
+      <div class="feature">  
+        <h4>🎭 Social Calibration</h4>  
+        <p>Analyze body language and tone for perfect social performance.</p>  
+      </div>  
+    </div>  
+  </section>  
 
-  <section id="features">
-    <h3>Key Features</h3>
-    <div class="features">
-      <div class="feature">
-        <h4>⚡ Instant Recall</h4>
-        <p>Store and retrieve memories with perfect clarity and speed.</p>
-      </div>
-      <div class="feature">
-        <h4>📶 Mental Connectivity</h4>
-        <p>Stay in sync with your digital life — without lifting a finger.</p>
-      </div>
-      <div class="feature">
-        <h4>🧠 Focus Amplification</h4>
-        <p>Maximize attention and minimize distractions, even in stressful environments.</p>
-      </div>
-      <div class="feature">
-        <h4>🎭 Social Calibration</h4>
-        <p>Analyze body language and tone for perfect social performance.</p>
-      </div>
-    </div>
-  </section>
+  <section id="tech">  
+    <h3>The Technology Behind SYNEX</h3>  
+    <p>  
+      Developed in partnership with leading neurotech firms and powered by proprietary quantum-mapped logic gates,  
+      SYNEX adapts to your individual brain chemistry in real time. Unlike traditional implants,  
+      SYNEX requires no charging, no updates, and no downtime.  
+    </p>  
+  </section>  
 
-  <section id="tech">
-    <h3>The Technology Behind SYNEX</h3>
-    <p>
-      Developed in partnership with leading neurotech firms and powered by proprietary quantum-mapped logic gates,
-      SYNEX adapts to your individual brain chemistry in real time. Unlike traditional implants,
-      SYNEX requires no charging, no updates, and no downtime.
-    </p>
-  </section>
+  <section id="testimonials">  
+    <h3>Voices from the Future</h3>  
+    <p>  
+      <em>"SYNEX changed my life. I feel 200% more productive." – @NovaRay (Influencer)</em><br/>  
+      <em>"It’s like my brain finally works the way it should." – Real User Review</em><br/>  
+      <em>"My followers say I seem happier, calmer, smarter." – @NeoVibes</em>  
+    </p>  
+  </section>  
 
-  <section id="testimonials">
-    <h3>Voices from the Future</h3>
-    <p>
-      <em>"SYNEX changed my life. I feel 200% more productive." – @NovaRay (Influencer)</em><br/>
-      <em>"It’s like my brain finally works the way it should." – Real User Review</em><br/>
-      <em>"My followers say I seem happier, calmer, smarter." – @NeoVibes</em>
-    </p>
-  </section>
+  <section id="contact">  
+    <h3>Interested in SYNEX?</h3>  
+    <p>  
+      Join the waitlist. Get connected. Get enhanced. This isn’t the future — it’s now.  
+    </p>  
+    <button class="button" id="joinButton">Join the Waitlist</button>  
+  </section>  
 
-  <section id="contact">
-    <h3>Interested in SYNEX?</h3>
-    <p>
-      Join the waitlist. Get connected. Get enhanced. This isn’t the future — it’s now.
-    </p>
-    <button class="button">Join the Waitlist</button>
-  </section>
-
-  <div class="footer">
-    © 2032 SYNEX Corp. | This is a fictional website created for a game. SYNEX is not real.
-  </div>
+  <div class="footer">  
+    © 2032 SYNEX Corp. | This is a fictional website created for a game. SYNEX is not real.  
+  </div>  
 
   <script>
-  let queueNumber = Math.floor(Math.random() * (1873 - 358 + 1)) + 358;
-  let queueInterval;
-  let countdownStarted = false;
+    let queueNumber = Math.floor(Math.random() * (1873 - 358 + 1)) + 358;
+    let queueInterval;
+    let alreadyStarted = false;
 
-  document.querySelector(".button").addEventListener("click", () => {
-    if (countdownStarted) return;
-    countdownStarted = true;
+    document.getElementById("joinButton").addEventListener("click", () => {
+      if (alreadyStarted) return;
+      alreadyStarted = true;
 
-    const contactSection = document.getElementById("contact");
-    const queueBox = document.createElement("div");
-    queueBox.style.background = "#15171c";
-    queueBox.style.padding = "2em";
-    queueBox.style.marginTop = "2em";
-    queueBox.style.border = "2px solid #00f6ff";
-    queueBox.style.textAlign = "center";
-    queueBox.style.color = "#00f6ff";
-    queueBox.style.fontSize = "1.2em";
-    queueBox.id = "queueBox";
-    queueBox.innerHTML = `You’ve been added to the SYNEX waitlist.<br><br><strong>Current Position in Queue:</strong><br><span id="queueNumber">${queueNumber}</span>`;
-    contactSection.appendChild(queueBox);
+      const contactSection = document.getElementById("contact");
+      const queueBox = document.createElement("div");
+      queueBox.className = "queue-box";
+      queueBox.innerHTML = `You’ve been added to the SYNEX waitlist.<br><br><strong>Current Position in Queue:</strong><br><span id="queueNum">${queueNumber}</span>`;
+      contactSection.appendChild(queueBox);
 
-    queueInterval = setInterval(() => {
-      const decrement = Math.floor(Math.random() * 3) + 1;
-      queueNumber -= decrement;
-      if (queueNumber <= 0) {
-        clearInterval(queueInterval);
-        queueBox.innerHTML = `
-          <div style="padding: 2em; border: 2px dashed #00f6ff;">
-            <h3 class="glow">WIRED MINDS: Releasing 2026–2027</h3>
-            <p>Your upgrade awaits. Stay tuned for full integration.</p>
-            <p>Welcome to the new era of mind-machine synergy.</p>
-          </div>
-        `;
-      } else {
-        document.getElementById("queueNumber").innerText = queueNumber;
+      function updateQueue() {
+        const decreaseBy = Math.floor(Math.random() * 3) + 1;
+        queueNumber -= decreaseBy;
+
+        if (queueNumber <= 0) {
+          clearInterval(queueInterval);
+          queueBox.remove();
+          const postcard = document.createElement("div");
+          postcard.className = "postcard";
+          postcard.innerHTML = `
+            <h2 class="glow">WIRED MINDS: Releasing 2026–2027</h2>
+            <p>Your upgrade awaits.<br>Thank you for your patience.<br>More information coming soon.</p>
+          `;
+          contactSection.appendChild(postcard);
+        } else {
+          document.getElementById("queueNum").innerText = queueNumber;
+        }
+
+        const nextUpdate = Math.random() * (90000 - 30000) + 30000;
+        queueInterval = setTimeout(updateQueue, nextUpdate);
       }
-    }, Math.random() * (90000 - 30000) + 30000); // 30–90 seconds
-  });
-</script>
 
-
-</body>
+      updateQueue();
+    });
+  </script>
+</body>  
 </html>
